@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from .serializer import *
 from .models import *
 from rest_framework import status
-from utils.partition import partition
+from utils.ccScore import CC_score_generator
+from utils.partition import asin_and_partition_num_generate
 from utils.search import search_results
 
 # Create your views here.
@@ -25,47 +26,46 @@ from utils.search import search_results
 class ProductGet(APIView):
         def post(self , request):
             data = request.data
-            asin = data["asin"]
+        #     asin = data["asin"]
             title = data["title"]
             description = data["description"]
          
-            p =partition(title=title, desc=description)
+            p,asin =asin_and_partition_num_generate(title=title, desc=description)
             data["partition"] = p
             print("hello: "+str(p))
-            serializer = GetProductDetails(data=data, context= {'request': request})
-            if serializer.is_valid():
-                serializer.save()
-                get_product = serializer.data
-                return Response({
-                        'message' : 'files uploaded successfully',
-                        'data' : serializer.data
-                        }, status= status.HTTP_200_OK)
+            #serializer = GetProductDetails(data=data, context= {'request': request})
+        #     if serializer.is_valid():
+        #         serializer.save()
+        #         get_product = serializer.data
+        #         return Response({
+        #                 'message' : 'files uploaded successfully',
+        #                 'data' : serializer.data
+        #                 }, status= status.HTTP_200_OK)
 
             return Response({
-                        'message' : serializer.errors,
-                        }, status= status.HTTP_400_BAD_REQUEST)
+                        'message' : 'files uploaded successfully',
+                        'data' : data
+                        }, status= status.HTTP_200_OK)
 
 class RateProduct(APIView):
-        def get_object(self, pk):
-                return Product.objects.get(pk=pk)
 
         def patch(self , request):
                 data = request.data
-                temp = self.get_object(data['asin'])
+                asin = data['asin']
                 rating = data['rating']
                 review = data['review']
-                data["ccScore"]=1
-                serializer = CCScoreDetails( temp,data=data, partial=True)
-                if serializer.is_valid():
-                        serializer.save()
-                        return Response({
+                cc = CC_score_generator(asin, review, rating)
+                # serializer = CCScoreDetails( temp,data=data, partial=True)
+                # if serializer.is_valid():
+                #         serializer.save()
+                return Response({
                                 'message' : 'files uploaded successfully',
-                                'data' : serializer.data
+                                'data' : cc
                                 }, status= status.HTTP_200_OK)
 
-                return Response({
-                                'message' : serializer.errors,
-                                }, status= status.HTTP_400_BAD_REQUEST)                
+                # return Response({
+                #                 'message' : serializer.errors,
+                #                 }, status= status.HTTP_400_BAD_REQUEST)                
                 
 
 
