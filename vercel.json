@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "sarwas/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "sarwas/wsgi.py"
+    }
+  ]
+}
