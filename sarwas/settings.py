@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = ["https://*","https://sarwas.scm.azurewebsites.net","http
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://dewanshdt.github.io/",
     "http://127.0.0.1:9000",
     "https://sarwas.scm.azurewebsites.net",
     "https://sarwas.azurewebsites.net",
