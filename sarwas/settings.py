@@ -28,20 +28,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ["https://*","https://sarwas.scm.azurewebsites.net","https://sarwas.azurewebsites.net"]
+# CSRF_TRUSTED_ORIGINS = ["https://*","https://sarwas.scm.azurewebsites.net","https://sarwas.azurewebsites.net"]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
-    "https://sarwas.scm.azurewebsites.net",
-    "https://sarwas.azurewebsites.net",
-    "https://*"
-]
-CORS_ORIGIN_WHITELIST = [
-    "https://sarwas.scm.azurewebsites.net","https://sarwas.azurewebsites.net"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000",
+#     "https://sarwas.scm.azurewebsites.net",
+#     "https://sarwas.azurewebsites.net",
+#     "https://*"
+# ]
+# CORS_ORIGIN_WHITELIST = [
+#     "https://sarwas.scm.azurewebsites.net","https://sarwas.azurewebsites.net","https://*"
+# ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 
