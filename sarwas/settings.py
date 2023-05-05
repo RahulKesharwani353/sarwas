@@ -39,7 +39,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://*"
 ]
 CORS_ORIGIN_WHITELIST = [
-    "https://vidhaan-backend-production.up.railway.app"
+    "https://sarwas.scm.azurewebsites.net","https://sarwas.azurewebsites.net"
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
