@@ -65,4 +65,4 @@ venv/
 
 # dotenv environment variables file
 .env
-.venv
+venv/
